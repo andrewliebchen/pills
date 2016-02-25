@@ -2,10 +2,10 @@ Meteor.publish(null, () => {
   return Meteor.roles.find({});
 });
 
-Meteor.publish('posts', () => {
-  return Posts.find();
+Meteor.publish('medications', () => {
+  return Medications.find();
 });
 
-Meteor.publish('singlePost', (id) => {
-  return Posts.find({_id: id});
+Meteor.publish('singleMedication', (id) => {
+  return Medications.find({_id: id});
 });
