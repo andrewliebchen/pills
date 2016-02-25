@@ -1,0 +1,8 @@
+# System files
+.DS_Store
+
+lib/app.browserify.js.cached
+lib/app.browserify.js.map
+
+# Sensitive files
+settings.json
