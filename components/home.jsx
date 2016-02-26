@@ -62,32 +62,39 @@ Home = React.createClass({
           <header className="panel-heading">
             <h3 className="panel-title">Schedule</h3>
           </header>
-          {medications.map((medication, i) => {
-            return (
-              <table className="table" key={i}>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    {_.times(dayLength, (i) => {
-                      return <th key={i}>{wakeTime + i}</th>;
-                    })}
+
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Hour</th>
+                <th/>
+              </tr>
+            </thead>
+            <tbody>
+              {_.times(dayLength, (i) => {
+                const hour = wakeTime + i;
+                return (
+                  <tr key={i}>
+                    <td>{hour}</td>
+                    <td>
+                      <ul className="list-group">
+                        {medications.map((medication, i) => {
+                          if(_.indexOf(medication.dose, hour) !== -1) {
+                            return (
+                              <li key={i} className="list-group-item">
+                                💊 {medication.name}
+                              </li>
+                            );
+                          }
+                        })}
+                      </ul>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{medication.name}</td>
-                    {_.times(dayLength, (i) => {
-                      return (
-                        <td key={i}>
-                          {_.indexOf(medication.dose, i) === -1 ? '' :  '💊'}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                </tbody>
-              </table>
-            );
-          })}
+                );
+              })}
+            </tbody>
+          </table>
+
           <div className="panel-body">
             Add medication
           </div>
